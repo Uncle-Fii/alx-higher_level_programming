@@ -1,53 +1,59 @@
 #!/usr/bin/python3
+"""Create a Class Square with size, method of area and getters & setters"""
+
+
 class Square:
-        """Represents a square.
-            Private instance attribute: size:
-                    - property def size(self)
-                            - property setter def size(self, value)
-                                Instantiation with optional size.
-                                    Public instance method: def area(self).
-                                        """
+    """Class - Square"""
 
-                                            def __init__(self, size=0):
-                                                    """Initializes the data."""
-                                                            self.__size = size
+    def __init__(self, size=0):
+        """Constructor of a Square with the size"""
+        if (type(size) is not int):
+            raise (TypeError("size must be an integer"))
+        elif (size < 0):
+            raise (ValueError("size must be >= 0"))
+        else:
+            self.__size = size
 
-                                                                def __eq__(self, other):
-                                                                        """Equal."""
-                                                                                if hasattr(other, 'size'):
-                                                                                            return self.__size == other.__size
-                                                                                                    return self.__size == other
+    def __lt__(self, other):
+        """Compare operator <"""
+        return (self.area() < other.area())
 
-                                                                                                        def __ne__(self, other):
-                                                                                                                """Not equal."""
-                                                                                                                        return not self.__eq__(other)
+    def __le__(self, other):
+        """Compare operator <="""
+        return (self.area() <= other.area())
 
-                                                                                                                            def __lt__(self, other):
-                                                                                                                                    """Less than."""
-                                                                                                                                            if hasattr(other, 'size'):
-                                                                                                                                                        return self.__size < other.__size
-                                                                                                                                                                return self.__size < other
+    def __gt__(self, other):
+        """Compare operator >"""
+        return (self.area() > other.area())
 
-                                                                                                                                                                    def __le__(self, other):
-                                                                                                                                                                            """Less than or equal."""
-                                                                                                                                                                                    if hasattr(other, 'size'):
-                                                                                                                                                                                                return self.__size <= other.__size
-                                                                                                                                                                                                        return self.__size <= other
+    def __ge__(self, other):
+        """Compare operator >="""
+        return (self.area() >= other.area())
 
-                                                                                                                                                                                                            @property
-                                                                                                                                                                                                                def size(self):
-                                                                                                                                                                                                                        """Retrieves the size."""
-                                                                                                                                                                                                                                return self.__size
+    def __eq__(self, other):
+        """Compare operator =="""
+        return (self.area() == other.area())
 
-                                                                                                                                                                                                                                    @size.setter
-                                                                                                                                                                                                                                        def size(self, value):
-                                                                                                                                                                                                                                                """Sets the size to a value."""
-                                                                                                                                                                                                                                                        if not isinstance(value, int) or not isinstance(value, float):
-                                                                                                                                                                                                                                                                    raise TypeError("size must be a number")
-                                                                                                                                                                                                                                                                            elif value < 0:
-                                                                                                                                                                                                                                                                                        raise ValueError("size must be >= 0")
-                                                                                                                                                                                                                                                                                                self.__size = value
+    def __ne__(self, other):
+        """Compare operator !="""
+        return (self.area() != other.area())
 
-                                                                                                                                                                                                                                                                                                    def area(self):
-                                                                                                                                                                                                                                                                                                            """Returns the current square area."""
-                                                                                                                                                                                                                                                                                                                    return self.__size ** 2
+    def area(self):
+        """Method to get the area of the Square"""
+        return (self.__size ** 2)
+
+    @property
+    def size(self):
+        """Getter of the private attribute size"""
+        return (self.__size)
+
+    @size.setter
+    def size(self, value):
+        """Setter for the size private attribute"""
+        if ((type(value) is int) or (type(value) is float)):
+            if (value < 0):
+                raise (ValueError("size must be >= 0"))
+            else:
+                self.__size = value
+        else:
+            raise (TypeError("size must be a number"))
