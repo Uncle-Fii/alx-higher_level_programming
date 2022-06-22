@@ -64,8 +64,8 @@ class SinglyLinkedList():
             else:
                 actual.next_node = NewNode
                 return
-         prev.next_node = NewNode
-         NewNode.next_node = actual
+        prev.next_node = NewNode
+        NewNode.next_node = actual
 
     def __str__(self):
         """Class As a String"""
